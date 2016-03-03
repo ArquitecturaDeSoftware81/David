@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <style>
+            /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+            body {
+                font-family: "Open Sans", sans-serif;
+                height: 100vh;
+                background: url("http://www.farmaciasada.es/s/cc_images/teaserbox_31541066.jpg?t=1400775810") 50% fixed;
+                background-size: cover;
+            }
+        </style>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#basic').puiautocomplete({
+                    completeSource: countries
+                });
+
+                $('#pnl').puipanel();
+
+
+                $('#default').puibutton();
+            });
+        </script>
+        <title>Ventas</title>
+
+    </h:head>
+
+    <h:body>
+        <h:form id="form">
+
+
+            <p:dataTable id="user" 
+                         var="user" 
+                         value="#{tabla.user}" 
+                         paginator="true" 
+                         rows="20" 
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="5,10,15,20">
+
+                <p:column headerText="ID" style="width: 100px" sortBy="#{user.id}" filterBy="#{user.id}">
+                    <h:outputText value="#{user.id}" />
+                </p:column>
+                <p:column headerText="Nombre" style="width: 100px" sortBy="#{user.nombre}" filterBy="#{user.nombre}">
+                    <h:outputText value="#{user.nombre}" />
+                </p:column>
+                <p:column headerText="Precio" style="width: 100px" sortBy="#{user.precio}" filterBy="#{user.precio}">
+                    <h:outputText value="#{user.precio}" />
+                </p:column>
+                <p:column headerText="Existencias" style="width: 100px" sortBy="#{user.existencias}" filterBy="#{user.existencias}">
+                    <h:outputText value="#{user.existencias}" />
+                </p:column>
+                <p:column headerText="Descripcion" style="width: 100px" sortBy="#{user.descripcion}" filterBy="#{user.descripcion}">
+                    <h:outputText value="#{user.descripcion}" />
+                </p:column>
+
+
+
+            </p:dataTable>
+
+            <p:dialog header="carDetail" widgetVar="carDialog" resizable="false" id="carDlg"
+                      showEffect="fade" hideEffect="Explode" modal="true">
+
+                <h:panelGrid id="Display" columns="2" cellpadding="4" style="margin: 0 auto;">
+
+                    <f:facet name="header">
+                        <h:outputText value="datos de la fila seleccionada"/>
+                    </f:facet>
+                    <h:outputText value="ID: "/>
+                    <h:outputText value="#{tabla.selectUser.id}" style="font-weight: bold"/>
+
+                    <h:outputText value="Nombre: "/>
+                    <h:outputText value="#{tabla.selectUser.nombre}" style="font-weight: bold"/>
+
+                    <h:outputText value="Precio: "/>
+                    <h:outputText value="#{tabla.selectUser.precio}" style="font-weight: bold"/>
+
+                    <h:outputText value="Existencias: "/>
+                    <h:outputText value="#{tabla.selectUser.existencias}" style="font-weight: bold"/>
+
+                    <h:outputText value="Descripcion: "/>
+                    <h:outputText value="#{tabla.selectUser.descripcion}" style="font-weight: bold"/>
+
+                </h:panelGrid>
+            </p:dialog>
+
+            <div id="pnl" title="Panel" style="margin-top:50px">
+                
+            </div>
+
+            <h3 class="title title-short" style="margin-top: 0px;">Producto/ID</h3>
+            <input id="basic" name="producto" type="text"/>
+
+            <h3 class="title title-short" style="margin-top: 0px;">Cantidad</h3>
+            <input id="basic" name="cantidad" type="text"/> <button id="agregar" type="button">Agregar</button>
+
+            <p:dataTable id="venta" 
+                         var="user" 
+                         value="#{tabla.user}" 
+                         paginator="true" 
+                         rows="20" 
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="5,10,15,20">
+                <p:column headerText="ID">
+
+                </p:column>
+                <p:column headerText="Nombre">
+
+                </p:column>
+                <p:column headerText="Cantidad">
+
+                </p:column>
+                <p:column headerText="Precio">
+
+                </p:column>
+            </p:dataTable>
+
+            <h3 class="title title-short" style="margin-top: 0px;">Total</h3>
+            <input id="basic" name="total" type="total"/>
+
+        </h:form>
+    </h:body>
+</html>
+

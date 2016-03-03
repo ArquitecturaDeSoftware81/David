@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Ventas</title>
+
+    </h:head>
+
+    <h:body>
+        <h:form id="form">
+
+
+
+            <p:dataTable id="user" var="user" value="#{tabla.user}" tableStyle="width:auto"
+                         paginator="true" rows="3" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="1,2,3,5">
+
+                <p:column headerText="ID" style="width: 100px" sortBy="#{user.id}" filterBy="#{user.id}">
+                    <h:outputText value="#{user.id}" />
+                </p:column>
+                <p:column headerText="Nombre" style="width: 100px" sortBy="#{user.nombre}" filterBy="#{user.nombre}">
+                    <h:outputText value="#{user.nombre}" />
+                </p:column>
+                <p:column headerText="Precio" style="width: 100px" sortBy="#{user.precio}" filterBy="#{user.precio}">
+                    <h:outputText value="#{user.precio}" />
+                </p:column>
+
+                
+
+            </p:dataTable>
+
+            <p:dialog header="Car Detail" widgetVar="carDialog" resizable="false" id="carDlg"
+                      showEffect="fade" hideEffect="Explode" modal="true">
+
+                <h:panelGrid id="Display" columns="2" cellpadding="4" style="margin: 0 auto;">
+
+                    <f:facet name="header">
+                        <h:outputText value="datos de la fila seleccionada"/>
+                    </f:facet>
+                    <h:outputText value="ID: "/>
+                    <h:outputText value="#{tabla.selectUser.id}" style="font-weight: bold"/>
+
+                    <h:outputText value="Nombre: "/>
+                    <h:outputText value="#{tabla.selectUser.nombre}" style="font-weight: bold"/>
+
+                    <h:outputText value="Precio: "/>
+                    <h:outputText value="#{tabla.selectUser.precio}" style="font-weight: bold"/>
+
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
+
+    </h:body>
+</html>
+
